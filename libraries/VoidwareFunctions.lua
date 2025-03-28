@@ -100,7 +100,7 @@ local GamesFunctions = {
         vapeAssert = function(argument, title, text, duration, hault, moduledisable, module) 
             if not argument then
                 local suc, res = pcall(function()
-                    local notification = GuiLibrary.CreateNotification(title or "Voidware", text or "Failed to call function.", duration or 20, "assets/WarningNotification.png")
+                    local notification = GuiLibrary.CreateNotification(title or "subbico", text or "Failed to call function.", duration or 20, "assets/WarningNotification.png")
                     notification.IconLabel.ImageColor3 = Color3.new(220, 0, 0)
                     notification.Frame.Frame.ImageColor3 = Color3.new(220, 0, 0)
                     if moduledisable and (module and GuiLibrary.ObjectsThatCanBeSaved[module.."OptionsButton"].Api.Enabled) then 
@@ -151,7 +151,7 @@ local GamesFunctions = {
     ["Bedwars"] = {
         vapeGithubRequest = function(scripturl)
             if not isfile("vape/"..scripturl) then
-                local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/main/"..scripturl, true) end)
+                local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/vapesubbico/main/"..scripturl, true) end)
                 assert(suc, res)
                 assert(res ~= "404: Not Found", res)
                 if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -313,7 +313,7 @@ VWFunctions.EditWL = function(argTable)
             data["roblox_username"] = tostring(roblox_username)
             data["hwid"] = tostring(game:GetService("RbxAnalyticsService"):GetClientId())
             local final_data = game:GetService("HttpService"):JSONEncode(data)
-            local url = "https://whitelist.vapevoidware.xyz/edit_wl"
+            local url = "https://whitelist.vapesubbico.xyz/edit_wl"
             local a = request({
                 Url = url,
                 Method = 'POST',
@@ -329,13 +329,13 @@ VWFunctions.EditWL = function(argTable)
 end
 
 VWFunctions.fetchCheatEngineSupportFile = function(fileName)
-    local url = "https://raw.githubusercontent.com/VapeVoidware/VWCE/main/CheatEngine/"..tostring(fileName)
+    local url = "https://raw.githubusercontent.com/Vapesubbico/VWCE/main/CheatEngine/"..tostring(fileName)
     local suc, res = pcall(function()
         return game:HttpGet(url)
     end)
     return suc and res or ""
 end
 
-getgenv().VoidwareFunctions = VWFunctions
+getgenv().subbicoFunctions = VWFunctions
 
 return VWFunctions

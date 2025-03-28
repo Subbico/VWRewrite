@@ -36,17 +36,17 @@ local vapeCachedAssets = {}
 local function encode(tbl)
     return game:GetService("HttpService"):JSONEncode(tbl)
 end
-VoidwareFunctions.GlobaliseObject("encode", encode)
+subbicoFunctions.GlobaliseObject("encode", encode)
 local function decode(tbl)
     return game:GetService("HttpService"):JSONDecode(tbl)
 end
-VoidwareFunctions.GlobaliseObject("decode", decode)
+subbicoFunctions.GlobaliseObject("decode", decode)
 local function cprint(tbl)
 	for i, v in pairs(tbl) do
 		print(tostring(tbl), tostring(i), tostring(v))
 	end
 end
-VoidwareFunctions.GlobaliseObject("cprint", cprint)
+subbicoFunctions.GlobaliseObject("cprint", cprint)
 
 local function removeTags(str)
 	str = str:gsub('<br%s*/>', '\n')
@@ -291,7 +291,7 @@ function bedwars.ClientStoreHandler:dispatch(tbl)
     --- pov u can't reverse engineer this function :skull:
 end
 bedwars.ItemHandler = {}
-bedwars.ItemHandler.ItemMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("ItemMeta.json"))
+bedwars.ItemHandler.ItemMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("ItemMeta.json"))
 --decode(readfile("vape/CheatEngine/ItemMeta.json"))
 bedwars.ItemHandler.getItemMeta = function(item)
     for i,v in pairs(bedwars.ItemHandler.ItemMeta) do
@@ -300,11 +300,11 @@ bedwars.ItemHandler.getItemMeta = function(item)
     return nil
 end
 bedwars.ItemTable = bedwars.ItemHandler.ItemMeta.items
-bedwars.KitMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("KitMeta.json"))
+bedwars.KitMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("KitMeta.json"))
 --decode(readfile("vape/CheatEngine/KitMeta.json"))
-bedwars.ProdAnimationsMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("ProdAnimationsMeta.json"))
+bedwars.ProdAnimationsMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("ProdAnimationsMeta.json"))
 --decode(readfile('vape/CheatEngine/ProdAnimationsMeta.json'))
-bedwars.AnimationTypeMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("AnimationTypeMeta.json"))
+bedwars.AnimationTypeMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("AnimationTypeMeta.json"))
 bedwars.AnimationType = bedwars.AnimationTypeMeta
 --decode(readfile('vape/CheatEngine/AnimationTypeMeta.json'))
 bedwars.AnimationController = {
@@ -443,7 +443,7 @@ local function getPlacedBlock(pos, strict)
     end
     return res
 end
-VoidwareFunctions.GlobaliseObject("getPlacedBlock", getPlacedBlock)
+subbicoFunctions.GlobaliseObject("getPlacedBlock", getPlacedBlock)
 function bedwars.BlockController:getStore()
 	local tbl = {}
 	function tbl:getBlockData(pos)
@@ -734,7 +734,7 @@ local function switchItem(tool, delayTime)
 end
 
 local switchitem = switchItem
-VoidwareFunctions.GlobaliseObject("switchItem", switchItem)
+subbicoFunctions.GlobaliseObject("switchItem", switchItem)
 local function switchToAndUseTool(block, legit)
 	local tool = getBestTool(block.Name)
 	if tool and (entityLibrary.isAlive and lplr.Character:FindFirstChild("HandInvItem") and lplr.Character.HandInvItem.Value ~= tool.tool) then
@@ -995,13 +995,13 @@ bedwars.AppController = {}
 function bedwars.AppController:isAppOpen(appName)
 	return game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild(appName)
 end
-bedwars.KillEffectMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("KillEffectMeta.json"))
+bedwars.KillEffectMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("KillEffectMeta.json"))
 --decode(readfile('vape/CheatEngine/KillEffectMeta.json'))
 bedwars.BalloonController = {}
 function bedwars.BalloonController:inflateBalloon()
 	bedwars.Client:Get("InflateBalloon"):FireServer()
 end
-bedwars.SoundList = decode(VoidwareFunctions.fetchCheatEngineSupportFile("SoundListMeta.json"))
+bedwars.SoundList = decode(subbicoFunctions.fetchCheatEngineSupportFile("SoundListMeta.json"))
 --decode(readfile('vape/CheatEngine/SoundListMeta.json'))
 bedwars.SoundManager = {}
 function bedwars.SoundManager:playSound(soundId)
@@ -1128,7 +1128,7 @@ function bedwars.AbilityController:useAbility(ability, ...)
 	local args = {...}
 	bedwars.Client:Get("useAbility"):FireServer(ability, unpack(args))
 end
-bedwars.ShopItemsMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("ShopItemsMeta.json"))
+bedwars.ShopItemsMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("ShopItemsMeta.json"))
 --decode(readfile('vape/CheatEngine/ShopItemsMeta.json'))
 bedwars.ShopItems = bedwars.ShopItemsMeta.ShopItems
 local bowConstants = {}
@@ -1151,7 +1151,7 @@ local function getBowConstants()
 end
 bowConstants = getBowConstants()
 bedwars.BowConstantsTable = bowConstants
-bedwars.ProjectileMeta = decode(VoidwareFunctions.fetchCheatEngineSupportFile("ProjectileMeta.json"))
+bedwars.ProjectileMeta = decode(subbicoFunctions.fetchCheatEngineSupportFile("ProjectileMeta.json"))
 --decode(readfile('vape/CheatEngine/ProjectileMeta.json'))
 bedwars.ProjectileUtil = {}
 function bedwars.ProjectileUtil:createProjectile(p15, p16, p17, p18)
@@ -1227,9 +1227,9 @@ function bedwars.ProjectileController:createLocalProjectile(p29, p30, p31, p32, 
 	return v41;
 end
 bedwars.MageKitUtil = {}
-bedwars.MageKitUtil.MageElementVisualizations = decode(VoidwareFunctions.fetchCheatEngineSupportFile("MageKitUtileMeta.json")).MageElementMeta
+bedwars.MageKitUtil.MageElementVisualizations = decode(subbicoFunctions.fetchCheatEngineSupportFile("MageKitUtileMeta.json")).MageElementMeta
 --decode(readfile('vape/CheatEngine/MageKitUtileMeta.json')).MageElementMeta
-bedwars.BalanceFile = decode(VoidwareFunctions.fetchCheatEngineSupportFile("BalanceFireMeta.json"))
+bedwars.BalanceFile = decode(subbicoFunctions.fetchCheatEngineSupportFile("BalanceFireMeta.json"))
 --decode(readfile('vape/CheatEngine/BalanceFireMeta.json'))
 bedwars.MageController = {}
 bedwars.FishermanController = {}
@@ -1363,7 +1363,7 @@ function bedwars.StoreController:updateLocalHand()
 	store.localHand.toolType = store.localHand.Type
 	store.hand = store.localHand
 end
-VoidwareFunctions.GlobaliseObject("StoreTable", {})
+subbicoFunctions.GlobaliseObject("StoreTable", {})
 function bedwars.StoreController:executeStoreTable()
 	for i,v in pairs(shared.StoreTable) do
 		if type(v) == "function" then task.spawn(function() pcall(function() v() end) end) end
@@ -1417,9 +1417,9 @@ for i, v in pairs({"PlaceBlockEvent", "BreakBlockEvent"}) do
 		end))
 	end)
 end
-VoidwareFunctions.GlobaliseObject("vapeEvents", vapeEvents)
+subbicoFunctions.GlobaliseObject("vapeEvents", vapeEvents)
 table.insert(shared.StoreTable, function()
-	VoidwareFunctions.GlobaliseObject("vapeEvents", vapeEvents)
+	subbicoFunctions.GlobaliseObject("vapeEvents", vapeEvents)
 end)
 
 store.blockRaycast.FilterType = Enum.RaycastFilterType.Include
@@ -1448,7 +1448,7 @@ local isnetworkowner = function(part)
 	end
 	return networkownerswitch <= tick()
 end
-VoidwareFunctions.GlobaliseObject("isnetworkowner", isnetworkowner)
+subbicoFunctions.GlobaliseObject("isnetworkowner", isnetworkowner)
 local getcustomasset = getsynasset or getcustomasset or function(location) return "rbxasset://"..location end
 local queueonteleport = syn and syn.queue_on_teleport or queue_on_teleport or function() end
 local synapsev3 = syn and syn.toast_notification and "V3" or ""
@@ -1469,7 +1469,7 @@ end
 
 local function vapeGithubRequest(scripturl)
 	if not isfile("vape/"..scripturl) then
-		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/vapevoidware/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
+		local suc, res = pcall(function() return game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/vapesubbico/"..readfile("vape/commithash.txt").."/"..scripturl, true) end)
 		assert(suc, res)
 		assert(res ~= "404: Not Found", res)
 		if scripturl:find(".lua") then res = "--This watermark is used to delete the file if its cached, remove it to make the file persist after commits.\n"..res end
@@ -1521,7 +1521,7 @@ local function isTarget(plr)
 end
 
 local function isVulnerable(plr) return plr.Humanoid.Health > 0 and not plr.Character.FindFirstChildWhichIsA(plr.Character, "ForceField") end
-VoidwareFunctions.GlobaliseObject("isVulnarable", isVulnarable)
+subbicoFunctions.GlobaliseObject("isVulnarable", isVulnarable)
 
 local function getPlayerColor(plr)
 	return tostring(plr.TeamColor) ~= "White" and plr.TeamColor.Color
@@ -1604,7 +1604,7 @@ local function getItem(itemName, inv)
 	end
 	return nil
 end
-VoidwareFunctions.GlobaliseObject("getItem", getItem)
+subbicoFunctions.GlobaliseObject("getItem", getItem)
 
 local cache = {}
 local function getItemNear(itemName, inv)
@@ -1625,7 +1625,7 @@ local function getItemNear(itemName, inv)
     end
     return nil
 end
-VoidwareFunctions.GlobaliseObject("getItemNear", getItemNear)
+subbicoFunctions.GlobaliseObject("getItemNear", getItemNear)
 
 local function getHotbarSlot(itemName)
 	for slotNumber, slotTable in pairs(store.localInventory.hotbar) do
@@ -1635,7 +1635,7 @@ local function getHotbarSlot(itemName)
 	end
 	return nil
 end
-VoidwareFunctions.GlobaliseObject("getHotbarSlot", getHotbarSlot)
+subbicoFunctions.GlobaliseObject("getHotbarSlot", getHotbarSlot)
 
 local function getNearbyObjects(origin, distance)
     assert(typeof(origin) == "Vector3", "Origin must be a Vector3")
@@ -1652,7 +1652,7 @@ local function getNearbyObjects(origin, distance)
     end
     return nearbyObjects
 end
-VoidwareFunctions.GlobaliseObject("getNearyObjects", getNearbyObjects)
+subbicoFunctions.GlobaliseObject("getNearyObjects", getNearbyObjects)
 
 local function getShieldAttribute(char)
 	local returnedShield = 0
@@ -1663,7 +1663,7 @@ local function getShieldAttribute(char)
 	end
 	return returnedShield
 end
-VoidwareFunctions.GlobaliseObject("getShieldAttribute", getShieldAttribute)
+subbicoFunctions.GlobaliseObject("getShieldAttribute", getShieldAttribute)
 
 local function getPickaxe()
 	return getItemNear("pick")
@@ -1703,7 +1703,7 @@ local function getSword()
 	end
 	return bestSword, bestSwordSlot
 end
-VoidwareFunctions.GlobaliseObject("getSword", getSword)
+subbicoFunctions.GlobaliseObject("getSword", getSword)
 
 local function getBow()
 	local bestBow, bestBowSlot, bestBowStrength = nil, nil, 0
@@ -1835,7 +1835,7 @@ local function getSpeed(reduce)
 	end)
 	return reduce and speed ~= 1 and math.max(speed * (0.8 - (0.3 * math.floor(speed))), 1) or speed
 end
-VoidwareFunctions.GlobaliseObject("getSpeed", getSpeed)
+subbicoFunctions.GlobaliseObject("getSpeed", getSpeed)
 
 local Reach = {Enabled = false}
 local blacklistedblocks = {bed = true, ceramic = true}
@@ -1854,7 +1854,7 @@ local function getScaffold(vec, diagonaltoggle)
 	end
 	return realvec
 end
-VoidwareFunctions.GlobaliseObject("getScaffold", getScaffold)
+subbicoFunctions.GlobaliseObject("getScaffold", getScaffold)
 
 local function waitForChildOfType(obj, name, timeout, prop)
 	local check, returned = tick() + timeout
@@ -1884,7 +1884,7 @@ local function getBestTool(block)
 	end
 	return tool
 end
-VoidwareFunctions.GlobaliseObject("getBestTool", getBestTool)
+subbicoFunctions.GlobaliseObject("getBestTool", getBestTool)
 
 local function GetPlacedBlocksNear(pos, normal)
 	local blocks = {}
@@ -2042,7 +2042,7 @@ local function EntityNearPosition(distance, ignore, overridepos)
 	end
 	return closestEntity
 end
-VoidwareFunctions.GlobaliseObject("EntityNearPosition", EntityNearPosition)
+subbicoFunctions.GlobaliseObject("EntityNearPosition", EntityNearPosition)
 
 local function EntityNearMouse(distance)
 	local closestEntity, closestMagnitude = nil, distance
@@ -2061,7 +2061,7 @@ local function EntityNearMouse(distance)
 	end
 	return closestEntity
 end
-VoidwareFunctions.GlobaliseObject("EntityNearMouse", EntityNearMouse)
+subbicoFunctions.GlobaliseObject("EntityNearMouse", EntityNearMouse)
 
 --[[local function AllNearPosition(distance, amount, sortfunction, prediction)
 	local returnedplayer = {}
@@ -2276,7 +2276,7 @@ local function AllNearPosition(distance, amount, sortfunction, prediction, npcIn
 	end
 	return returnedplayer
 end
-VoidwareFunctions.GlobaliseObject("AllNearPosition", AllNearPosition)
+subbicoFunctions.GlobaliseObject("AllNearPosition", AllNearPosition)
 
 local function isWhitelistedBed(bed)
     if bed and bed.Name == 'bed' then
@@ -4092,7 +4092,7 @@ local RunLoops = {
 
 local function BindToLoop(tableName, service, name, func)
 	local oldfunc = func
-	func = function(delta) VoidwareFunctions.handlepcall(pcall(function() oldfunc(delta) end)) end
+	func = function(delta) subbicoFunctions.handlepcall(pcall(function() oldfunc(delta) end)) end
     if RunLoops[tableName][name] == nil then
         RunLoops[tableName][name] = service:Connect(func)
         table.insert(vapeConnections, RunLoops[tableName][name])
@@ -5105,7 +5105,7 @@ local RunLoops = {
 
 local function BindToLoop(tableName, service, name, func)
 	local oldfunc = func
-	func = function(delta) VoidwareFunctions.handlepcall(pcall(function() oldfunc(delta) end)) end
+	func = function(delta) subbicoFunctions.handlepcall(pcall(function() oldfunc(delta) end)) end
     if RunLoops[tableName][name] == nil then
         RunLoops[tableName][name] = service:Connect(func)
         table.insert(vapeConnections, RunLoops[tableName][name])
@@ -8727,7 +8727,7 @@ sendmessage = function(text)
 		end
 		return bypassMessage
 	end
-	--text = text.." | discord.gg/voidware"
+	--text = text.." | discord.gg/subbico"
 	--text = createBypassMessage(text)
 	local textChatService = game:GetService("TextChatService")
 	local replicatedStorageService = game:GetService("ReplicatedStorage")
@@ -10182,13 +10182,13 @@ run(function()
 	end
 end)
 
---VoidwareFunctions.GlobaliseObject("store", store)
-VoidwareFunctions.GlobaliseObject("GlobalStore", store)
+--subbicoFunctions.GlobaliseObject("store", store)
+subbicoFunctions.GlobaliseObject("GlobalStore", store)
 
---VoidwareFunctions.GlobaliseObject("bedwars", bedwars)
-VoidwareFunctions.GlobaliseObject("GlobalBedwars", bedwars)
+--subbicoFunctions.GlobaliseObject("bedwars", bedwars)
+subbicoFunctions.GlobaliseObject("GlobalBedwars", bedwars)
 
-VoidwareFunctions.GlobaliseObject("VapeBWLoaded", true)
+subbicoFunctions.GlobaliseObject("VapeBWLoaded", true)
 local function createMonitoredTable(originalTable, onChange)
     local proxy = {}
     local mt = {
@@ -10206,13 +10206,13 @@ local function createMonitoredTable(originalTable, onChange)
 end
 local function onChange(key, oldValue, newValue)
    --print("Changed key:", key, "from", oldValue, "to", newValue)
-   	--VoidwareFunctions.GlobaliseObject("store", store)
-	VoidwareFunctions.GlobaliseObject("GlobalStore", store)
+   	--subbicoFunctions.GlobaliseObject("store", store)
+	subbicoFunctions.GlobaliseObject("GlobalStore", store)
 end
 local function onChange2(key, oldValue, newValue)
 	--print("Changed key:", key, "from", oldValue, "to", newValue)
-	--VoidwareFunctions.GlobaliseObject("bedwars", bedwars)
-	VoidwareFunctions.GlobaliseObject("GlobalBedwars", bedwars)
+	--subbicoFunctions.GlobaliseObject("bedwars", bedwars)
+	subbicoFunctions.GlobaliseObject("GlobalBedwars", bedwars)
  end
 
 store = createMonitoredTable(store, onChange)

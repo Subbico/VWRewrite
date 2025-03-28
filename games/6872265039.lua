@@ -124,10 +124,10 @@ run(function()
 	})
 end)
 
-VoidwareFunctions.GlobaliseObject("bedwars", bedwars)
-VoidwareFunctions.GlobaliseObject("GlobalBedwars", bedwars)
+subbicoFunctions.GlobaliseObject("bedwars", bedwars)
+subbicoFunctions.GlobaliseObject("GlobalBedwars", bedwars)
 
-VoidwareFunctions.GlobaliseObject("VapeBWLoaded", true)
+subbicoFunctions.GlobaliseObject("VapeBWLoaded", true)
 local function createMonitoredTable(originalTable, onChange)
     local proxy = {}
     local mt = {
@@ -144,8 +144,8 @@ local function createMonitoredTable(originalTable, onChange)
     return proxy
 end
 local function onChange2(key, oldValue, newValue)
-	VoidwareFunctions.GlobaliseObject("bedwars", bedwars)
-	VoidwareFunctions.GlobaliseObject("GlobalBedwars", bedwars)
+	subbicoFunctions.GlobaliseObject("bedwars", bedwars)
+	subbicoFunctions.GlobaliseObject("GlobalBedwars", bedwars)
 end
 
 bedwars = createMonitoredTable(bedwars, onChange2)

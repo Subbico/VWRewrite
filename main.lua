@@ -89,10 +89,10 @@ local function finishLoading()
 					if isfile('vape/NewMainScript.lua') then
 						loadstring(readfile("vape/NewMainScript.lua"))()
 					else
-						loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/VWRewrite/main/NewMainScript.lua", true))()
 					end
 				else
-					loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/VWRewrite/main/NewMainScript.lua", true))()
 				end
 			]]
 			if shared.VapeDeveloper then
@@ -113,8 +113,8 @@ local function finishLoading()
 			if shared.VapePrivate then
 				teleportScript = 'shared.VapePrivate = true\n'..teleportScript
 			end
-			if shared.NoVoidwareModules then
-				teleportScript = 'shared.NoVoidwareModules = true\n'..teleportScript
+			if shared.NosubbicoModules then
+				teleportScript = 'shared.NosubbicoModules = true\n'..teleportScript
 			end
 			if shared.ProfilesDisabled then
 				teleportScript = 'shared.ProfilesDisabled = true\n'..teleportScript
@@ -155,9 +155,9 @@ local gui = readfile('vape/profiles/gui.txt')
 if not isfolder('vape/assets/'..gui) then
 	makefolder('vape/assets/'..gui)
 end
-local VWFunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/libraries/VoidwareFunctions.lua", true))()
---pload('libraries/VoidwareFunctions.lua', true, true)
-VWFunctions.GlobaliseObject("VoidwareFunctions", VWFunctions)
+local VWFunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/VWRewrite/main/libraries/subbicoFunctions.lua", true))()
+--pload('libraries/subbicoFunctions.lua', true, true)
+VWFunctions.GlobaliseObject("subbicoFunctions", VWFunctions)
 VWFunctions.GlobaliseObject("VWFunctions", VWFunctions)
 
 vape = pload('guis/'..gui..'.lua', true, true)
@@ -179,14 +179,14 @@ getgenv().errorNotification = function(title, msg, dur)
 	vape:CreateNotification(title, msg, dur, 'alert')
 end
 if shared.CheatEngineMode then
-	InfoNotification("Voidware | CheatEngineMode", "Due to your executor not supporting some functions \n some modules might be missing!", 5) 
+	InfoNotification("subbico | CheatEngineMode", "Due to your executor not supporting some functions \n some modules might be missing!", 5) 
 end
 --[[pcall(function()
 	if (not isfile('vape/discord2.txt')) then
 		task.spawn(function() InfoNotification("Whitelist", "Was whitelisted and your whitelist dissapeared? Join back the discord server :D       ", 30) end)
-		task.spawn(function() InfoNotification("Discord", "New server! discord.gg/voidware!              ", 30) end)
-		task.spawn(function() warningNotification("Discord", "New server! discord.gg/voidware!             ", 30) end)
-		task.spawn(function() errorNotification("Discord", "New server! discord.gg/voidware!              ", 30) end)
+		task.spawn(function() InfoNotification("Discord", "New server! discord.gg/subbico!              ", 30) end)
+		task.spawn(function() warningNotification("Discord", "New server! discord.gg/subbico!             ", 30) end)
+		task.spawn(function() errorNotification("Discord", "New server! discord.gg/subbico!              ", 30) end)
 		writefile('vape/discord2.txt', '')
 	end
 end)--]]

@@ -1,5 +1,5 @@
 if shared.RiseMode then
-    return loadstring(game:HttpGet('https://raw.githubusercontent.com/VapeVoidware/VWRise/main/NewMainScript.lua'))()
+    return loadstring(game:HttpGet('https://raw.githubusercontent.com/Vapesubbico/VWRise/main/NewMainScript.lua'))()
 end
 local isfile = isfile or function(file)
 	local suc, res = pcall(function()
@@ -32,7 +32,7 @@ end
 
 if not shared.VapeDeveloper then
 	local _, subbed = pcall(function()
-		return game:HttpGet('https://github.com/VapeVoidware/VWRewrite')
+		return game:HttpGet('https://github.com/Vapesubbico/VWRewrite')
 	end)
 	local commit = subbed:find('currentOid')
 	commit = commit and subbed:sub(commit + 13, commit + 52) or nil
@@ -139,7 +139,7 @@ local function install_profiles(num)
     local httpservice = game:GetService('HttpService')
     local guiprofiles = {}
     local profilesfetched
-    local repoOwner = shared.RiseMode and "VapeVoidware/RiseProfiles" or "Erchobg/VoidwareProfiles"
+    local repoOwner = shared.RiseMode and "Vapesubbico/RiseProfiles" or "Erchobg/subbicoProfiles"
     local function vapeGithubRequest(scripturl)
         local suc, res = pcall(function() return game:HttpGet('https://raw.githubusercontent.com/'..repoOwner..'/main/'..scripturl, true) end)
         if not isfolder(baseDirectory.."profiles") then
@@ -211,7 +211,7 @@ local function are_installed_1()
     if isfile(baseDirectory..'libraries/profilesinstalled5.txt') then return true else return false end
 end
 if not are_installed_1() then install_profiles(1) end
-local url = shared.RiseMode and "https://github.com/VapeVoidware/VWRise/" or "https://github.com/VapeVoidware/VWRewrite"
+local url = shared.RiseMode and "https://github.com/Vapesubbico/VWRise/" or "https://github.com/Vapesubbico/VWRewrite"
 local commit = "main"
 writefile(baseDirectory.."commithash2.txt", commit)
 commit = 'bc33a8108daf1dbb41ce717fb588be701deaa37c'
@@ -227,7 +227,7 @@ local function vapeGithubRequest(scripturl, isImportant)
     end
     local suc, res
     if commit == nil then commit = "main" end
-    local url = (scripturl == "MainScript.lua" or scripturl == "GuiLibrary.lua") and shared.RiseMode and "https://raw.githubusercontent.com/VapeVoidware/VWRise/" or "https://raw.githubusercontent.com/VapeVoidware/VWRewrite/"
+    local url = (scripturl == "MainScript.lua" or scripturl == "GuiLibrary.lua") and shared.RiseMode and "https://raw.githubusercontent.com/Vapesubbico/VWRise/" or "https://raw.githubusercontent.com/Vapesubbico/VWRewrite/"
     suc, res = pcall(function() return game:HttpGet(url..commit.."/"..scripturl, true) end)
     if not suc or res == "404: Not Found" then
         if isImportant then
@@ -241,8 +241,8 @@ end
 shared.VapeDeveloper = shared.VapeDeveloper or shared.VoidDev
 local function pload(fileName, isImportant, required)
     fileName = tostring(fileName)
-    if string.find(fileName, "CustomModules") and string.find(fileName, "Voidware") then
-        fileName = string.gsub(fileName, "Voidware", "VW")
+    if string.find(fileName, "CustomModules") and string.find(fileName, "subbico") then
+        fileName = string.gsub(fileName, "subbico", "VW")
     end        
     if shared.VoidDev and shared.DebugMode then warn(fileName, isImportant, required, debug.traceback(fileName)) end
     local res = vapeGithubRequest(fileName, isImportant)

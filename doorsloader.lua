@@ -6,7 +6,7 @@ if isNew then
     local dir = 'mspaint/doors/settings'
     writefile(dir.."/autoload.txt", "pro")
     local suc, data = pcall(function()
-        return game:HttpGet("https://raw.githubusercontent.com/Erchobg/VoidwareProfiles/main/mspaint/doors/settings/pro.json", true)
+        return game:HttpGet("https://raw.githubusercontent.com/Erchobg/subbicoProfiles/main/mspaint/doors/settings/pro.json", true)
     end)
     if suc then
         writefile(dir.."/pro.json", data)
@@ -25,10 +25,10 @@ local function errorNotification(title, msgtext, dur)
     )
 end
 local function load()
-    local suc2, err2 = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/mspaint.lua", true))() end)
+    local suc2, err2 = pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/VW-Add/main/mspaint.lua", true))() end)
     return {Data1 = suc2, Data2 = err2}
 end
 local data = load()
 if (not data.Data1) then
-    errorNotification("Voidware x mspaint - Doors", "Failure loading mspaint! Error: "..tostring(data.Data2), 7)
+    errorNotification("subbico x mspaint - Doors", "Failure loading mspaint! Error: "..tostring(data.Data2), 7)
 end

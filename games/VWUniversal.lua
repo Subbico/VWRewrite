@@ -136,9 +136,9 @@ local colors = {
     SkyBlue = Color3.fromRGB(135, 206, 235),
     Violet = Color3.fromRGB(238, 130, 238)
 }
-VoidwareFunctions.GlobaliseObject("ColorTable", colors)
-VoidwareFunctions.LoadFunctions("Universal")
-VoidwareFunctions.LoadServices()
+subbicoFunctions.GlobaliseObject("ColorTable", colors)
+subbicoFunctions.LoadFunctions("Universal")
+subbicoFunctions.LoadServices()
 
 local lplr = game:GetService("Players").LocalPlayer
 local lightingService = game:GetService("Lighting")
@@ -420,7 +420,7 @@ end)
 				local ChatTag = {}
 				ChatTag[yes] =
 					{
-						TagText = "VOIDWARE USER",
+						TagText = "subbico USER",
 						TagColor = Color3.fromRGB(255, 0, 0),
 					}
 				local oldchanneltab
@@ -630,15 +630,15 @@ run(function() local CloudMods = {}
 end)
 
 run(function() 
-	local RestartVoidware = {}
-	RestartVoidware = vape.Categories.Blatant:CreateModule({
+	local Restartsubbico = {}
+	Restartsubbico = vape.Categories.Blatant:CreateModule({
 		Name = 'Restart',
 		Function = function(calling)
 			if calling then 
-				RestartVoidware:Toggle()
+				Restartsubbico:Toggle()
 				vape:Uninject()
 				task.wait(0.1)
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VWRewrite/main/NewMainScript.lua", true))()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/Vapesubbico/VWRewrite/main/NewMainScript.lua", true))()
 			end
 		end
 	}) 
@@ -1114,7 +1114,7 @@ end)
 				local ChatTag = {}
 				ChatTag[yes] =
 					{
-						TagText = "VOIDWARE USER",
+						TagText = "subbico USER",
 						TagColor = Color3.fromRGB(255, 0, 0),
 					}
 				local oldchanneltab
@@ -1258,17 +1258,17 @@ run(function()
 				local suc2, tagText = checkTagText()
 				local suc3, tagColor, isCustom = checkTagColor()
 				local suc4, user, isCustom = checkRblxUsername()
-				if not suc1 then errorNotification("EditWL-API_KEY", "Please specify your WL API Key in the textbox! \n More information in discord.gg/voidware \n (whitelisted users only)", 7) end
+				if not suc1 then errorNotification("EditWL-API_KEY", "Please specify your WL API Key in the textbox! \n More information in discord.gg/subbico \n (whitelisted users only)", 7) end
 				if suc1 and (suc2 or suc3 or suc4) then
 					local ArgTable = {}
 					ArgTable["api_key"] = apiKey
 					if suc2 then ArgTable["TagText"] = tagText end
 					if suc3 then ArgTable["TagColor"] = tagColor end
 					if suc4 then ArgTable["RobloxUsername"] = user end
-					InfoNotification("EditWL", "Sent request to the Voidware API! Waiting for response...", 7)
-					if not shared.VoidwareFunctions then errorNotification("EditWL-API_HANDLER", "Critical file not found!", 3) end
-					local VoidwareFunctions = shared.VoidwareFunctions
-					local response = VoidwareFunctions.EditWL(ArgTable)
+					InfoNotification("EditWL", "Sent request to the subbico API! Waiting for response...", 7)
+					if not shared.subbicoFunctions then errorNotification("EditWL-API_HANDLER", "Critical file not found!", 3) end
+					local subbicoFunctions = shared.subbicoFunctions
+					local response = subbicoFunctions.EditWL(ArgTable)
 					task.spawn(function()
 						repeat task.wait() until response
 						if type(response) == "string" then 
@@ -2707,7 +2707,7 @@ end)
 							if target and type(target) == "string" and argsData and apikey then
 								local data = {command = GlobalCommandsGUI.CommandsDropdown.Value, sendername = game:GetService("Players").LocalPlayer.Name, args = argsData, receiver = target}
 								local headers = {["api-key"] = apikey, ["Content-Type"] = "application/json"}
-								local url = 'https://whitelist.vapevoidware.xyz/GlobalFunctions.json/commands'
+								local url = 'https://whitelist.vapesubbico.xyz/GlobalFunctions.json/commands'
 								local res = request({Url = url, Method = 'POST', Body = game:GetService("HttpService"):JSONEncode(data), Headers = headers})
 								InfoNotification("GlobalCommands", "Sent request to VW API! Waiting for response...", 3)
 								local body = res.Body

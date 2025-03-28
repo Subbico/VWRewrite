@@ -43,7 +43,7 @@ if (not shared.GlobalBedwars) or (shared.GlobalBedwars and type(shared.GlobalBed
 	if isfile('vape/games/6872274481.lua') then delfile('vape/games/6872274481.lua') end
 end
 local entityLibrary = entitylib
-local VoidwareStore = {
+local subbicoStore = {
 	bedtable = {},
 	Tweening = false
 }
@@ -59,8 +59,8 @@ local isnetworkowner = function(part)
 	return networkownerswitch <= tick()
 end
 
-VoidwareFunctions.GlobaliseObject("lplr", game:GetService("Players").LocalPlayer)
-VoidwareFunctions.LoadFunctions("Bedwars")
+subbicoFunctions.GlobaliseObject("lplr", game:GetService("Players").LocalPlayer)
+subbicoFunctions.LoadFunctions("Bedwars")
 
 local function BedwarsInfoNotification(mes)
     local bedwars = shared.GlobalBedwars
@@ -81,7 +81,7 @@ local function BedwarsErrorNotification(mes)
 end
 getgenv().BedwarsErrorNotification = BedwarsErrorNotification
 
-VoidwareFunctions.LoadFunctions("Bedwars")
+subbicoFunctions.LoadFunctions("Bedwars")
 
 local gameCamera = game.Workspace.CurrentCamera
 
@@ -3905,7 +3905,7 @@ task.spawn(function()
         end
         end)
     end
-    VoidwareStore.Tweening = tweening
+    subbicoStore.Tweening = tweening
     tweening = false
     task.wait()
   until not vapeInjected
@@ -3913,7 +3913,7 @@ end)
 local vapeAssert = function(argument, title, text, duration, hault, moduledisable, module) 
 	if not argument then
     local suc, res = pcall(function()
-    local notification = GuiLibrary.CreateNotification(title or "Voidware", text or "Failed to call function.", duration or 20, "assets/WarningNotification.png")
+    local notification = GuiLibrary.CreateNotification(title or "subbico", text or "Failed to call function.", duration or 20, "assets/WarningNotification.png")
     notification.IconLabel.ImageColor3 = Color3.new(220, 0, 0)
     notification.Frame.Frame.ImageColor3 = Color3.new(220, 0, 0)
     if moduledisable and (module and vape.Modules[module].Enabled) then vape.Modules[module]:Toggle(false) end
@@ -4065,7 +4065,7 @@ local function FindTarget(dist, blockRaycast, includemobs, healthmethod)
 		end
 		for i,v in pairs(collectionService:GetTagged("Drone")) do
 			local plr = playersService:GetPlayerByUserId(v:GetAttribute("PlayerUserId"))
-			if plr and plr ~= lplr and plr.Team and lplr.Team and plr.Team ~= lplr.Team and ({VoidwareFunctions:GetPlayerType(plr)})[2] and abletocalculate() and v.PrimaryPart and v:FindFirstChild("Humanoid") and v.Humanoid.Health then
+			if plr and plr ~= lplr and plr.Team and lplr.Team and plr.Team ~= lplr.Team and ({subbicoFunctions:GetPlayerType(plr)})[2] and abletocalculate() and v.PrimaryPart and v:FindFirstChild("Humanoid") and v.Humanoid.Health then
 				if sortmethods[sortmethod](v.PrimaryPart, v.Humanoid.Health) and raycasted(v.PrimaryPart) then
 					sort = healthmethod and v.Humanoid.Health or GetMagnitudeOf2Objects(lplr.Character:WaitForChild("HumanoidRootPart"), v.PrimaryPart)
 					entity.Player = {Character = v, Name = "Drone", DisplayName = "Drone", UserId = 1}
@@ -4090,7 +4090,7 @@ local function FindTarget(dist, blockRaycast, includemobs, healthmethod)
     return entity
 end
 local function isVulnerable(plr) return plr.Humanoid.Health > 0 and not plr.Character.FindFirstChildWhichIsA(plr.Character, "ForceField") end
-VoidwareFunctions.GlobaliseObject("isVulnarable", isVulnarable)
+subbicoFunctions.GlobaliseObject("isVulnarable", isVulnarable)
 local function EntityNearPosition(distance, ignore, overridepos)
 	local closestEntity, closestMagnitude = nil, distance
 	if entityLibrary.isAlive then
@@ -4203,7 +4203,7 @@ local function EntityNearPosition(distance, ignore, overridepos)
 	end
 	return closestEntity
 end
-VoidwareFunctions.GlobaliseObject("EntityNearPosition", EntityNearPosition)
+subbicoFunctions.GlobaliseObject("EntityNearPosition", EntityNearPosition)
 
 run(function()
 	local Autowin = {Enabled = false}
@@ -4251,13 +4251,13 @@ run(function()
 						end
 						end)
 						if AutowinNotification.Enabled then
-							local bedname = VoidwareStore.bedtable[bed] or "unknown"
+							local bedname = subbicoStore.bedtable[bed] or "unknown"
 							task.spawn(InfoNotification, "Autowin", "Destroying "..bedname:lower().." team's bed", 5)
 						end
 						repeat task.wait() until FindEnemyBed() ~= bed or not isAlive()
 						if FindTarget(45, store.blockRaycast) and FindTarget(45, store.blockRaycast).RootPart and isAlive() then
 							if AutowinNotification.Enabled then
-								local team = VoidwareStore.bedtable[bed] or "unknown"
+								local team = subbicoStore.bedtable[bed] or "unknown"
 								task.spawn(InfoNotification, "Autowin", "Killing "..team:lower().." team's teamates", 5)
 							end
 							repeat
@@ -4422,7 +4422,7 @@ run(function()
 
 										local tag_data = shared.vapewhitelist:tag(needed_plr)
 										if tag_data and #tag_data > 0 then
-											if tag_data[1]["text"] == "VOIDWARE USER" then rank = "Normal" end
+											if tag_data[1]["text"] == "subbico USER" then rank = "Normal" end
 											local tag_text = tag_data[1]["text"].." - "..rank
 											local tag_color = tag_data[1]["color"]
 											local updated_text = add_colored_text(current_text, tag_text, tag_color)
@@ -4725,7 +4725,7 @@ end)
 					end
 				end)
 			else
-				VoidwareStore.jumpTick = tick() + 5
+				subbicoStore.jumpTick = tick() + 5
 			end
 		end
 	})
@@ -5735,7 +5735,7 @@ run(function()
 
     local function fetchReports(username)
         if not username then return {Suc = false, Error = "Username not specified!"} end
-        local url = 'https://detections.vapevoidware.xyz/reportdetector?user=' .. tostring(username)
+        local url = 'https://detections.vapesubbico.xyz/reportdetector?user=' .. tostring(username)
         local res = request({Url = url, Method = "GET"})
 
         if res and res.StatusCode == 200 then
