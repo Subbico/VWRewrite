@@ -801,7 +801,7 @@ run(function()
 
     local function fetchReports(username)
         if not username then return {Suc = false, Error = "Username not specified!"} end
-        local url = 'https://detections.vapevoidware.xyz/reportdetector?user=' .. tostring(username)
+        local url = 'https://detections.Subbico.xyz/reportdetector?user=' .. tostring(username)
         local res = request({Url = url, Method = "GET"})
 
         if res and res.StatusCode == 200 then
